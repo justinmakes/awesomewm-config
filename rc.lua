@@ -169,7 +169,50 @@ awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+    -- awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+
+    awful.tag.add("1", {
+      icon               = "/home/justinr/.config/awesome/theme/icons/terminal.svg",
+      layout             = awful.layout.layouts[1],
+      -- master_fill_policy = "master_width_factor",
+      -- gap_single_client  = true,
+      -- gap                = 15,
+      -- screen             = s,
+      -- selected           = true,
+    })
+    awful.tag.add("2", {
+      icon               = "/home/justinr/.config/awesome/theme/icons/globe.svg",
+      layout             = awful.layout.layouts[1],
+    })
+    awful.tag.add("3", {
+      icon               = "/home/justinr/.config/awesome/theme/icons/envelope.svg",
+      layout             = awful.layout.layouts[1],
+    })
+    awful.tag.add("4", {
+      icon               = "/home/justinr/.config/awesome/theme/icons/pen.svg",
+      layout             = awful.layout.layouts[1],
+    })
+    awful.tag.add("5", {
+      icon               = "/home/justinr/.config/awesome/theme/icons/rss.svg",
+      layout             = awful.layout.layouts[1],
+    })
+    awful.tag.add("6", {
+      icon               = "/home/justinr/.config/awesome/theme/icons/message.svg",
+      layout             = awful.layout.layouts[1],
+    })
+    awful.tag.add("7", {
+      icon               = "/home/justinr/.config/awesome/theme/icons/steam.svg",
+      layout             = awful.layout.layouts[1],
+      -- layout             = awful.layout.suit.floating,
+    })
+    awful.tag.add("8", {
+      icon               = "/home/justinr/.config/awesome/theme/icons/money-bill.svg",
+      layout             = awful.layout.layouts[1],
+    })
+    awful.tag.add("9", {
+      -- icon               = "/home/justinr/.config/awesome/theme/icons/steam.svg",
+      layout             = awful.layout.layouts[1],
+    })
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -231,7 +274,7 @@ root.buttons(gears.table.join(
 globalkeys = gears.table.join(
 
     -- Sound controls
-    awful.key({ modkey,           }, "z", function () awful.spawn("alacritty -t Pulsemixer -e pulsemixer") end,
+    awful.key({ modkey,           }, "z", function () awful.spawn("Alacritty -t Pulsemixer -e pulsemixer") end,
               {description = "open pulsemixer", group = "media controls"}),
     awful.key({}, "XF86AudioLowerVolume", function () awful.spawn("pulsemixer --change-volume -5") end,
               {description = "volume down", group = "media controls"}),
@@ -239,10 +282,10 @@ globalkeys = gears.table.join(
               {description = "volume up", group = "media controls"}),
     awful.key({}, "XF86AudioMute", function () awful.spawn("pulsemixer --toggle-mute") end,
               {description = "volume mute", group = "media controls"}),
-    -- awful.key({}, "XF86AudioPlay", function() awful.util.spawn("playerctl play-pause", false) end),
-    -- awful.key({}, "XF86AudioNext", function() awful.util.spawn("playerctl next", false) end),
-    -- awful.key({}, "XF86AudioPrev", function() awful.util.spawn("playerctl previous", false) end),
-
+    -- awful.key({ }, "XF86AudioNext",function () awful.util.spawn( "mpc next" ) end),
+    -- awful.key({ }, "XF86AudioPrev",function () awful.util.spawn( "mpc prev" ) end),
+    -- awful.key({ }, "XF86AudioPlay",function () awful.util.spawn( "mpc play" ) end),
+    -- awful.key({ }, "XF86AudioStop",function () awful.util.spawn( "mpc pause" ) end),
 
     -- Applications
     awful.key({ modkey,           }, "b", function () awful.spawn("flatpak run org.qutebrowser.qutebrowser --target window") end,
@@ -269,6 +312,10 @@ globalkeys = gears.table.join(
               {description = "gnucash - business", group = "applications"}),
     awful.key({ modkey, "Shift"   }, "p", function () awful.spawn("flatpak run com.bitwarden.desktop") end,
               {description = "bitwarden", group = "applications"}),
+    awful.key({ modkey, "Shift"   }, "p", function () awful.spawn("flatpak run com.bitwarden.desktop") end,
+              {description = "open bitwarden", group = "applications"}),
+    awful.key({ modkey,           }, "q", function () awful.spawn("/home/justinr/bin/screenshot.sh") end,
+              {description = "take screenshot", group = "actions"}),
 
     -- Help popup navigation
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
@@ -316,7 +363,7 @@ globalkeys = gears.table.join(
         {description = "go back", group = "client"}),
 
     -- Standard program
-    awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
+    awful.key({ modkey, "Shift"   }, "Return", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
@@ -382,7 +429,7 @@ clientkeys = gears.table.join(
               {description = "close", group = "client"}),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
               {description = "toggle floating", group = "client"}),
-    awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end,
+    awful.key({ modkey,           }, "Return", function (c) c:swap(awful.client.getmaster()) end,
               {description = "move to master", group = "client"}),
     awful.key({ modkey,           }, "o",      function (c) c:move_to_screen()               end,
               {description = "move to screen", group = "client"}),
@@ -522,7 +569,9 @@ awful.rules.rules = {
         -- and the name shown there might not match defined rules here.
         name = {
           "Event Tester",  -- xev.
-        },
+          "^origin$",
+          "^Origin$"},
+
         role = {
           "AlarmWindow",  -- Thunderbird's calendar.
           "ConfigManager",  -- Thunderbird's about:config.
@@ -538,6 +587,20 @@ awful.rules.rules = {
     -- Set Firefox to always map on the tag named "2" on screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { screen = 1, tag = "2" } },
+    { rule = { name = "Neomutt" },
+      properties = { screen = 1, tag = "3" } },
+    { rule = { name = "Journal" },
+      properties = { screen = 1, tag = "4" } },
+    { rule = { name = "Newsboat" },
+      properties = { screen = 1, tag = "5" } },
+    { rule = { name = "Podboat" },
+      properties = { screen = 1, tag = "5" } },
+    { rule = { class = "discord" },
+      properties = { screen = 1, tag = "6" } },
+    { rule = { class = "Steam" },
+      properties = { screen = 1, tag = "7" } },
+    { rule = { class = "Gnucash" },
+      properties = { screen = 1, tag = "8" } },
 }
 -- }}}
 
