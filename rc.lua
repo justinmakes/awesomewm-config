@@ -172,7 +172,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
 
     awful.tag.add("1", {
-      icon               = "/home/justinr/.config/awesome/theme/icons/terminal.svg",
+      icon               = "/home/justinr/.config/awesome/theme/icons/terminal.png",
       layout             = awful.layout.layouts[1],
       -- master_fill_policy = "master_width_factor",
       -- gap_single_client  = true,
@@ -181,32 +181,32 @@ awful.screen.connect_for_each_screen(function(s)
       -- selected           = true,
     })
     awful.tag.add("2", {
-      icon               = "/home/justinr/.config/awesome/theme/icons/globe.svg",
+      icon               = "/home/justinr/.config/awesome/theme/icons/globe.png",
       layout             = awful.layout.layouts[1],
     })
     awful.tag.add("3", {
-      icon               = "/home/justinr/.config/awesome/theme/icons/envelope.svg",
+      icon               = "/home/justinr/.config/awesome/theme/icons/postbox.png",
       layout             = awful.layout.layouts[1],
     })
     awful.tag.add("4", {
-      icon               = "/home/justinr/.config/awesome/theme/icons/pen.svg",
+      icon               = "/home/justinr/.config/awesome/theme/icons/journal.png",
       layout             = awful.layout.layouts[1],
     })
     awful.tag.add("5", {
-      icon               = "/home/justinr/.config/awesome/theme/icons/rss.svg",
+      icon               = "/home/justinr/.config/awesome/theme/icons/rss.png",
       layout             = awful.layout.layouts[1],
     })
     awful.tag.add("6", {
-      icon               = "/home/justinr/.config/awesome/theme/icons/message.svg",
+      icon               = "/home/justinr/.config/awesome/theme/icons/chat.png",
       layout             = awful.layout.layouts[1],
     })
     awful.tag.add("7", {
-      icon               = "/home/justinr/.config/awesome/theme/icons/steam.svg",
+      icon               = "/home/justinr/.config/awesome/theme/icons/steam.png",
       layout             = awful.layout.layouts[1],
       -- layout             = awful.layout.suit.floating,
     })
     awful.tag.add("8", {
-      icon               = "/home/justinr/.config/awesome/theme/icons/money-bill.svg",
+      icon               = "/home/justinr/.config/awesome/theme/icons/budget.png",
       layout             = awful.layout.layouts[1],
     })
     awful.tag.add("9", {
