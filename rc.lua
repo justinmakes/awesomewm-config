@@ -49,7 +49,7 @@ beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "alacritty"
-editor = os.getenv("EDITOR") or "nano"
+editor = os.getenv("EDITOR") or "nvim"
 editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
@@ -61,19 +61,19 @@ modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
-    awful.layout.suit.floating,
     awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier,
-    awful.layout.suit.corner.nw,
+    awful.layout.suit.floating,
+    -- awful.layout.suit.tile.left,
+    -- awful.layout.suit.tile.bottom,
+    -- awful.layout.suit.tile.top,
+    -- awful.layout.suit.fair,
+    -- awful.layout.suit.fair.horizontal,
+    -- awful.layout.suit.spiral,
+    -- awful.layout.suit.spiral.dwindle,
+    -- awful.layout.suit.max,
+    -- awful.layout.suit.max.fullscreen,
+    -- awful.layout.suit.magnifier,
+    -- awful.layout.suit.corner.nw,
     -- awful.layout.suit.corner.ne,
     -- awful.layout.suit.corner.sw,
     -- awful.layout.suit.corner.se,
@@ -229,6 +229,48 @@ root.buttons(gears.table.join(
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
+
+    -- Sound controls
+    awful.key({ modkey,           }, "z", function () awful.spawn("alacritty -t Pulsemixer -e pulsemixer") end,
+              {description = "open pulsemixer", group = "media controls"}),
+    awful.key({}, "XF86AudioLowerVolume", function () awful.spawn("pulsemixer --change-volume -5") end,
+              {description = "volume down", group = "media controls"}),
+    awful.key({}, "XF86AudioRaiseVolume", function () awful.spawn("pulsemixer --max-volume 100 --change-volume +5") end,
+              {description = "volume up", group = "media controls"}),
+    awful.key({}, "XF86AudioMute", function () awful.spawn("pulsemixer --toggle-mute") end,
+              {description = "volume mute", group = "media controls"}),
+    -- awful.key({}, "XF86AudioPlay", function() awful.util.spawn("playerctl play-pause", false) end),
+    -- awful.key({}, "XF86AudioNext", function() awful.util.spawn("playerctl next", false) end),
+    -- awful.key({}, "XF86AudioPrev", function() awful.util.spawn("playerctl previous", false) end),
+
+
+    -- Applications
+    awful.key({ modkey,           }, "b", function () awful.spawn("flatpak run org.qutebrowser.qutebrowser --target window") end,
+              {description = "open qutebrowser", group = "applications"}),
+    awful.key({ modkey, "Shift"   }, "b", function () awful.spawn("flatpak run org.mozilla.firefox -new-window https://www.hackerrank.com/domains/python") end,
+              {description = "open firefox", group = "applications"}),
+    awful.key({ modkey,           }, "e", function () awful.spawn("/home/justinr/bin/neomutt-attachments") end,
+              {description = "open neomutt", group = "applications"}),
+    awful.key({ modkey, "Shift"   }, "e", function () awful.spawn("alacritty -t iSync -e mbsync -a") end,
+              {description = "sync mail", group = "actions"}),
+    awful.key({ modkey,           }, "a", function () awful.spawn("alacritty -t Newsboat -e newsboat") end,
+              {description = "open newsboat", group = "applications"}),
+    awful.key({ modkey, "Shift"   }, "a", function () awful.spawn("alacritty -t Podboat -e podboat") end,
+              {description = "open podboat", group = "applications"}),
+    awful.key({ modkey,           }, "v", function () awful.spawn("/home/justinr/bin/vjournal") end,
+              {description = "open journal", group = "applications"}),
+    awful.key({ modkey, "Shift"   }, "f", function () awful.spawn("alacritty -t Ranger -e ranger") end,
+              {description = "open ranger", group = "applications"}),
+    awful.key({ modkey, "Shift"   }, "d", function () awful.spawn("slock") end,
+              {description = "lock screen", group = "actions"}),
+    awful.key({ modkey,           }, "g", function () awful.spawn("flatpak run org.gnucash.GnuCash /home/justinr/documents/accounting/justin/justin.gnucash") end,
+              {description = "gnucash - personal", group = "applications"}),
+    awful.key({ modkey, "Shift"   }, "g", function () awful.spawn("flatpak run org.gnucash.GnuCash /home/justinr/documents/accounting/remoterealty/remoterealty.gnucash") end,
+              {description = "gnucash - business", group = "applications"}),
+    awful.key({ modkey, "Shift"   }, "p", function () awful.spawn("flatpak run com.bitwarden.desktop") end,
+              {description = "bitwarden", group = "applications"}),
+
+    -- Help popup navigation
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
