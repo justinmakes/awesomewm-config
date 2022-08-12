@@ -204,8 +204,8 @@ awful.screen.connect_for_each_screen(function(s)
     })
     awful.tag.add("7", {
       icon               = "/home/justinr/.config/awesome/themes/icons/steam.png",
-      layout             = awful.layout.layouts[1],
-      -- layout             = awful.layout.suit.floating,
+      -- layout             = awful.layout.layouts[1],
+      layout             = awful.layout.suit.floating,
     })
     awful.tag.add("8", {
       icon               = "/home/justinr/.config/awesome/themes/icons/budget.png",
@@ -369,7 +369,7 @@ globalkeys = gears.table.join(
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
-    awful.key({ modkey, "Shift"   }, "q", awesome.quit,
+    awful.key({ modkey, "Shift", "Control"   }, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
