@@ -45,7 +45,9 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+-- beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+local theme_path = string.format("%s/.config/awesome/themes/zenburn/theme.lua", os.getenv("HOME"), "default")
+beautiful.init(theme_path)
 
 -- This is used later as the default terminal and editor to run.
 terminal = "alacritty"
@@ -172,7 +174,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
 
     awful.tag.add("1", {
-      icon               = "/home/justinr/.config/awesome/theme/icons/terminal.png",
+      icon               = "/home/justinr/.config/awesome/themes/icons/terminal.png",
       layout             = awful.layout.layouts[1],
       -- master_fill_policy = "master_width_factor",
       -- gap_single_client  = true,
@@ -181,36 +183,36 @@ awful.screen.connect_for_each_screen(function(s)
       -- selected           = true,
     })
     awful.tag.add("2", {
-      icon               = "/home/justinr/.config/awesome/theme/icons/globe.png",
+      icon               = "/home/justinr/.config/awesome/themes/icons/globe.png",
       layout             = awful.layout.layouts[1],
     })
     awful.tag.add("3", {
-      icon               = "/home/justinr/.config/awesome/theme/icons/postbox.png",
+      icon               = "/home/justinr/.config/awesome/themes/icons/postbox.png",
       layout             = awful.layout.layouts[1],
     })
     awful.tag.add("4", {
-      icon               = "/home/justinr/.config/awesome/theme/icons/journal.png",
+      icon               = "/home/justinr/.config/awesome/themes/icons/journal.png",
       layout             = awful.layout.layouts[1],
     })
     awful.tag.add("5", {
-      icon               = "/home/justinr/.config/awesome/theme/icons/rss.png",
+      icon               = "/home/justinr/.config/awesome/themes/icons/rss.png",
       layout             = awful.layout.layouts[1],
     })
     awful.tag.add("6", {
-      icon               = "/home/justinr/.config/awesome/theme/icons/chat.png",
+      icon               = "/home/justinr/.config/awesome/themes/icons/chat.png",
       layout             = awful.layout.layouts[1],
     })
     awful.tag.add("7", {
-      icon               = "/home/justinr/.config/awesome/theme/icons/steam.png",
+      icon               = "/home/justinr/.config/awesome/themes/icons/steam.png",
       layout             = awful.layout.layouts[1],
       -- layout             = awful.layout.suit.floating,
     })
     awful.tag.add("8", {
-      icon               = "/home/justinr/.config/awesome/theme/icons/budget.png",
+      icon               = "/home/justinr/.config/awesome/themes/icons/budget.png",
       layout             = awful.layout.layouts[1],
     })
     awful.tag.add("9", {
-      -- icon               = "/home/justinr/.config/awesome/theme/icons/steam.svg",
+      -- icon               = "/home/justinr/.config/awesome/themes/icons/steam.svg",
       layout             = awful.layout.layouts[1],
     })
 
