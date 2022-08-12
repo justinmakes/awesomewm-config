@@ -290,9 +290,9 @@ globalkeys = gears.table.join(
     -- awful.key({ }, "XF86AudioStop",function () awful.util.spawn( "mpc pause" ) end),
 
     -- Applications
-    awful.key({ modkey,           }, "b", function () awful.spawn("flatpak run org.qutebrowser.qutebrowser --target window") end,
+    awful.key({ modkey,           }, "w", function () awful.spawn("flatpak run org.qutebrowser.qutebrowser --target window") end,
               {description = "open qutebrowser", group = "applications"}),
-    awful.key({ modkey, "Shift"   }, "b", function () awful.spawn("flatpak run org.mozilla.firefox -new-window https://www.hackerrank.com/domains/python") end,
+    awful.key({ modkey, "Shift"   }, "w", function () awful.spawn("flatpak run org.mozilla.firefox -new-window https://www.hackerrank.com/domains/python") end,
               {description = "open firefox", group = "applications"}),
     awful.key({ modkey,           }, "e", function () awful.spawn("/home/justinr/bin/neomutt-attachments") end,
               {description = "open neomutt", group = "applications"}),
@@ -302,11 +302,11 @@ globalkeys = gears.table.join(
               {description = "open newsboat", group = "applications"}),
     awful.key({ modkey, "Shift"   }, "a", function () awful.spawn("alacritty -t Podboat -e podboat") end,
               {description = "open podboat", group = "applications"}),
-    awful.key({ modkey,           }, "v", function () awful.spawn("/home/justinr/bin/vjournal") end,
+    awful.key({ modkey, "Shift"   }, "j", function () awful.spawn("/home/justinr/bin/vjournal") end,
               {description = "open journal", group = "applications"}),
     awful.key({ modkey, "Shift"   }, "f", function () awful.spawn("alacritty -t Ranger -e ranger") end,
               {description = "open ranger", group = "applications"}),
-    awful.key({ modkey, "Shift"   }, "d", function () awful.spawn("slock") end,
+    awful.key({ modkey, "Shift"   }, "x", function () awful.spawn("slock") end,
               {description = "lock screen", group = "actions"}),
     awful.key({ modkey,           }, "g", function () awful.spawn("flatpak run org.gnucash.GnuCash /home/justinr/documents/accounting/justin/justin.gnucash") end,
               {description = "gnucash - personal", group = "applications"}),
@@ -316,7 +316,7 @@ globalkeys = gears.table.join(
               {description = "bitwarden", group = "applications"}),
     awful.key({ modkey, "Shift"   }, "p", function () awful.spawn("flatpak run com.bitwarden.desktop") end,
               {description = "open bitwarden", group = "applications"}),
-    awful.key({ modkey,           }, "q", function () awful.spawn("/home/justinr/bin/screenshot.sh") end,
+    awful.key({ modkey,           }, "x", function () awful.spawn("/home/justinr/bin/screenshot.sh") end,
               {description = "take screenshot", group = "actions"}),
 
     -- Help popup navigation
@@ -341,7 +341,7 @@ globalkeys = gears.table.join(
         end,
         {description = "focus previous by index", group = "client"}
     ),
-    awful.key({ modkey,           }, "w", function () mymainmenu:show() end,
+    awful.key({ modkey,           }, "b", function () mymainmenu:show() end,
               {description = "show main menu", group = "awesome"}),
 
     -- Layout manipulation
@@ -369,8 +369,8 @@ globalkeys = gears.table.join(
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
-    awful.key({ modkey, "Shift", "Control"   }, "q", awesome.quit,
-              {description = "quit awesome", group = "awesome"}),
+    -- awful.key({ modkey, "Shift",  }, "q", awesome.quit,
+              -- {description = "quit awesome", group = "awesome"}),
 
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),
@@ -405,7 +405,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey },            "r",     function () awful.util.spawn("dmenu_run") end,
               {description = "dmenu prompt", group = "launcher"}),
 
-    awful.key({ modkey }, "x",
+    awful.key({ modkey, "Shift" }, "b",
               function ()
                   awful.prompt.run {
                     prompt       = "Run Lua code: ",
