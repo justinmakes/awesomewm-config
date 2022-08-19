@@ -174,7 +174,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
 
     awful.tag.add("1", {
-      icon               = "/home/justinr/.config/awesome/themes/icons/terminal.png",
+      icon               = "/home/justinr/.config/awesome/icons/terminal.png",
       layout             = awful.layout.layouts[1],
       -- master_fill_policy = "master_width_factor",
       -- gap_single_client  = true,
@@ -183,36 +183,36 @@ awful.screen.connect_for_each_screen(function(s)
       -- selected           = true,
     })
     awful.tag.add("2", {
-      icon               = "/home/justinr/.config/awesome/themes/icons/globe.png",
+      icon               = "/home/justinr/.config/awesome/icons/globe.png",
       layout             = awful.layout.layouts[1],
     })
     awful.tag.add("3", {
-      icon               = "/home/justinr/.config/awesome/themes/icons/postbox.png",
+      icon               = "/home/justinr/.config/awesome/icons/postbox.png",
       layout             = awful.layout.layouts[1],
     })
     awful.tag.add("4", {
-      icon               = "/home/justinr/.config/awesome/themes/icons/journal.png",
+      icon               = "/home/justinr/.config/awesome/icons/journal.png",
       layout             = awful.layout.layouts[1],
     })
     awful.tag.add("5", {
-      icon               = "/home/justinr/.config/awesome/themes/icons/rss.png",
+      icon               = "/home/justinr/.config/awesome/icons/rss.png",
       layout             = awful.layout.layouts[1],
     })
     awful.tag.add("6", {
-      icon               = "/home/justinr/.config/awesome/themes/icons/chat.png",
+      icon               = "/home/justinr/.config/awesome/icons/chat.png",
       layout             = awful.layout.layouts[1],
     })
     awful.tag.add("7", {
-      icon               = "/home/justinr/.config/awesome/themes/icons/steam.png",
+      icon               = "/home/justinr/.config/awesome/icons/steam.png",
       -- layout             = awful.layout.layouts[1],
       layout             = awful.layout.suit.floating,
     })
     awful.tag.add("8", {
-      icon               = "/home/justinr/.config/awesome/themes/icons/budget.png",
+      icon               = "/home/justinr/.config/awesome/icons/budget.png",
       layout             = awful.layout.layouts[1],
     })
     awful.tag.add("9", {
-      -- icon               = "/home/justinr/.config/awesome/themes/icons/steam.svg",
+      -- icon               = "/home/justinr/.config/awesome/icons/steam.svg",
       layout             = awful.layout.layouts[1],
     })
 
@@ -240,6 +240,19 @@ awful.screen.connect_for_each_screen(function(s)
         buttons = tasklist_buttons
     }
 
+    -- Create a batteryarc widget
+    local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
+        -- NOTE: This requires sys-power/acpi package for the 'acpi' command
+
+    -- Create a ram widget
+    local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
+
+    -- Create a filesystem widget
+    local fs_widget = require("awesome-wm-widgets.fs-widget.fs-widget")
+
+    -- Create cpu widget
+    local cpu_widget = require("awesome-wm-widgets.cpu-widget.cpu-widget")
+
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s })
 
@@ -257,7 +270,11 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             mykeyboardlayout,
             wibox.widget.systray(),
+            cpu_widget(),
+            fs_widget({ mounts = { '/', '/home', '/var', '/.snapshots' } }),
+            ram_widget(),
             mytextclock,
+            batteryarc_widget(),
             s.mylayoutbox,
         },
     }
@@ -276,7 +293,7 @@ root.buttons(gears.table.join(
 globalkeys = gears.table.join(
 
     -- Sound controls
-    awful.key({ modkey,           }, "z", function () awful.spawn("Alacritty -t Pulsemixer -e pulsemixer") end,
+    awful.key({ modkey,           }, "z", function () awful.spawn("alacritty -t Pulsemixer -e pulsemixer") end,
               {description = "open pulsemixer", group = "media controls"}),
     awful.key({}, "XF86AudioLowerVolume", function () awful.spawn("pulsemixer --change-volume -5") end,
               {description = "volume down", group = "media controls"}),
@@ -402,7 +419,7 @@ globalkeys = gears.table.join(
               {description = "restore minimized", group = "client"}),
 
     -- Prompt
-    awful.key({ modkey },            "r",     function () awful.util.spawn("dmenu_run") end,
+    awful.key({ modkey },            "d",     function () awful.util.spawn("dmenu_run") end,
               {description = "dmenu prompt", group = "launcher"}),
 
     awful.key({ modkey, "Shift" }, "b",
@@ -565,12 +582,14 @@ awful.rules.rules = {
           "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
           "Wpa_gui",
           "veromix",
-          "xtightvncviewer"},
+          "xtightvncviewer",
+          "Bitwarden"},
 
         -- Note that the name property shown in xprop might be set slightly after creation of the client
         -- and the name shown there might not match defined rules here.
         name = {
           "Event Tester",  -- xev.
+          "Pulsemixer",
           "^origin$",
           "^Origin$"},
 
