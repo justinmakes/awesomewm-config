@@ -173,7 +173,9 @@ awful.screen.connect_for_each_screen(function(s)
     -- Each screen has its own tag table.
     -- awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
 
+    -- https://awesomewm.org/apidoc/documentation/08-client-layout-system.md.html
     awful.tag.add("1", {
+      -- screen = screen.primary,
       icon               = "/home/justinr/.config/awesome/icons/terminal.png",
       layout             = awful.layout.layouts[1],
       -- master_fill_policy = "master_width_factor",
@@ -183,35 +185,43 @@ awful.screen.connect_for_each_screen(function(s)
       -- selected           = true,
     })
     awful.tag.add("2", {
+      -- screen = screen.primary,
       icon               = "/home/justinr/.config/awesome/icons/globe.png",
       layout             = awful.layout.layouts[1],
     })
     awful.tag.add("3", {
-      icon               = "/home/justinr/.config/awesome/icons/postbox.png",
+      -- screen = screen.primary,
+      icon               = "/home/justinr/.config/awesome/icons/email.png",
       layout             = awful.layout.layouts[1],
     })
     awful.tag.add("4", {
+      -- screen = screen.primary,
       icon               = "/home/justinr/.config/awesome/icons/journal.png",
       layout             = awful.layout.layouts[1],
     })
     awful.tag.add("5", {
+      -- screen = screen.primary,
       icon               = "/home/justinr/.config/awesome/icons/rss.png",
       layout             = awful.layout.layouts[1],
     })
     awful.tag.add("6", {
+      -- screen = screen.primary,
       icon               = "/home/justinr/.config/awesome/icons/chat.png",
       layout             = awful.layout.layouts[1],
     })
     awful.tag.add("7", {
+      -- screen = screen.primary,
       icon               = "/home/justinr/.config/awesome/icons/steam.png",
       -- layout             = awful.layout.layouts[1],
       layout             = awful.layout.suit.floating,
     })
     awful.tag.add("8", {
+      -- screen = screen.primary,
       icon               = "/home/justinr/.config/awesome/icons/budget.png",
       layout             = awful.layout.layouts[1],
     })
     awful.tag.add("9", {
+      -- screen = screen.primary,
       -- icon               = "/home/justinr/.config/awesome/icons/steam.svg",
       layout             = awful.layout.layouts[1],
     })
