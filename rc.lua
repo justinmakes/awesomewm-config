@@ -46,7 +46,7 @@ end
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 -- beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
-local theme_path = string.format("%s/.config/awesome/themes/zenburn/theme.lua", os.getenv("HOME"), "default")
+local theme_path = string.format("%s/.config/awesome/themes/default/theme.lua", os.getenv("HOME"), "default")
 beautiful.init(theme_path)
 
 -- This is used later as the default terminal and editor to run.
@@ -64,6 +64,7 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
     awful.layout.suit.tile,
+    awful.layout.suit.magnifier,
     awful.layout.suit.floating,
     -- awful.layout.suit.tile.left,
     -- awful.layout.suit.tile.bottom,
@@ -74,7 +75,6 @@ awful.layout.layouts = {
     -- awful.layout.suit.spiral.dwindle,
     -- awful.layout.suit.max,
     -- awful.layout.suit.max.fullscreen,
-    -- awful.layout.suit.magnifier,
     -- awful.layout.suit.corner.nw,
     -- awful.layout.suit.corner.ne,
     -- awful.layout.suit.corner.sw,
@@ -201,29 +201,31 @@ awful.screen.connect_for_each_screen(function(s)
     })
     awful.tag.add("5", {
       -- screen = screen.primary,
-      icon               = "/home/justinr/.config/awesome/icons/rss.png",
+      -- icon               = "/home/justinr/.config/awesome/icons/rss.png",
       layout             = awful.layout.layouts[1],
     })
     awful.tag.add("6", {
       -- screen = screen.primary,
-      icon               = "/home/justinr/.config/awesome/icons/chat.png",
+      icon   = "/home/justinr/.config/awesome/icons/budget.png",
       layout             = awful.layout.layouts[1],
     })
     awful.tag.add("7", {
       -- screen = screen.primary,
-      icon               = "/home/justinr/.config/awesome/icons/steam.png",
+      icon               = "/home/justinr/.config/awesome/icons/rss.png",
+      layout = awful.layout.layouts[1],
+      -- layout             = awful.layout.suit.floating,
       -- layout             = awful.layout.layouts[1],
-      layout             = awful.layout.suit.floating,
     })
     awful.tag.add("8", {
       -- screen = screen.primary,
-      icon               = "/home/justinr/.config/awesome/icons/budget.png",
+      icon               = "/home/justinr/.config/awesome/icons/chat.png",
       layout             = awful.layout.layouts[1],
     })
     awful.tag.add("9", {
       -- screen = screen.primary,
-      -- icon               = "/home/justinr/.config/awesome/icons/steam.svg",
-      layout             = awful.layout.layouts[1],
+      icon   = "/home/justinr/.config/awesome/icons/steam.png",
+      -- layout             = awful.layout.layouts[1],
+      layout = awful.layout.suit.floating,
     })
 
     -- Create a promptbox for each screen
@@ -303,7 +305,7 @@ root.buttons(gears.table.join(
 globalkeys = gears.table.join(
 
     -- Sound controls
-    awful.key({ modkey,           }, "z", function () awful.spawn("st -t Pulsemixer -e pulsemixer") end,
+    awful.key({ modkey,           }, "z", function () awful.spawn("alacritty -t Pulsemixer -e pulsemixer") end,
               {description = "open pulsemixer", group = "media controls"}),
     awful.key({}, "XF86AudioLowerVolume", function () awful.spawn("pulsemixer --change-volume -5") end,
               {description = "volume down", group = "media controls"}),
@@ -317,32 +319,34 @@ globalkeys = gears.table.join(
     -- awful.key({ }, "XF86AudioStop",function () awful.util.spawn( "mpc pause" ) end),
 
     -- Applications
-    awful.key({ modkey,           }, "w", function () awful.spawn("flatpak run org.qutebrowser.qutebrowser --target window") end,
+    awful.key({ modkey,           }, "e", function () awful.spawn("/home/justinr/bin/demacs") end,
+              {description = "open emacsclient", group = "applications"}),
+    awful.key({ modkey, "Shift"   }, "e", function () awful.spawn("alacritty -t iSync -e mbsync --config /home/justinr/.config/mbsync/config -a") end,
+      {description = "start gpg agent", group = "actions"}),
+    awful.key({ modkey,           }, "w", function () awful.spawn("qutebrowser --target window") end,
               {description = "open qutebrowser", group = "applications"}),
-    awful.key({ modkey, "Shift"   }, "w", function () awful.spawn("flatpak run org.mozilla.firefox -new-window https://www.hackerrank.com/domains/python") end,
+    awful.key({ modkey, "Shift"   }, "w", function () awful.spawn("firefox -new-window https://www.hackerrank.com/domains/c") end,
               {description = "open firefox", group = "applications"}),
-    awful.key({ modkey,           }, "e", function () awful.spawn("/home/justinr/bin/neomutt-attachments") end,
-              {description = "open neomutt", group = "applications"}),
-    awful.key({ modkey, "Shift"   }, "e", function () awful.spawn("st -t iSync -e mbsync --config /home/justinr/.config/mbsync/config -a") end,
-              {description = "sync mail", group = "actions"}),
-    awful.key({ modkey,           }, "a", function () awful.spawn("st -t Newsboat -e newsboat") end,
+    awful.key({ modkey,           }, "r", function () awful.spawn("/home/justinr/bin/emacs-mail") end,
+              {description = "open mu4e", group = "applications"}),
+    awful.key({ modkey,           }, "a", function () awful.spawn("alacritty -t Newsboat -e newsboat") end,
               {description = "open newsboat", group = "applications"}),
-    awful.key({ modkey, "Shift"   }, "a", function () awful.spawn("st -t Podboat -e podboat") end,
+    awful.key({ modkey, "Shift"   }, "a", function () awful.spawn("alacritty -t Podboat -e podboat") end,
               {description = "open podboat", group = "applications"}),
-    awful.key({ modkey, "Shift"   }, "j", function () awful.spawn("/home/justinr/bin/vjournal") end,
+    awful.key({ modkey, "Shift"   }, "j", function () awful.spawn("/home/justinr/bin/emacs-org") end,
               {description = "open journal", group = "applications"}),
-    awful.key({ modkey, "Shift"   }, "f", function () awful.spawn("st -t Ranger -e ranger") end,
+    awful.key({ modkey, "Shift"   }, "f", function () awful.spawn("alacritty -t Ranger -e ranger") end,
               {description = "open ranger", group = "applications"}),
     awful.key({ modkey, "Shift"   }, "x", function () awful.spawn("slock") end,
               {description = "lock screen", group = "actions"}),
-    awful.key({ modkey,           }, "g", function () awful.spawn("flatpak run org.gnucash.GnuCash /home/justinr/documents/accounting/justin/justin.gnucash") end,
+    awful.key({ modkey,           }, "g", function () awful.spawn("/usr/bin/gnucash /home/justinr/documents/accounting/justin/justin.gnucash") end,
               {description = "gnucash - personal", group = "applications"}),
-    awful.key({ modkey, "Shift"   }, "g", function () awful.spawn("flatpak run org.gnucash.GnuCash /home/justinr/documents/accounting/remoterealty/remoterealty.gnucash") end,
+    awful.key({ modkey, "Shift"   }, "g", function () awful.spawn("/usr/bin/gnucash /home/justinr/documents/accounting/remoterealty/remoterealty.gnucash") end,
               {description = "gnucash - business", group = "applications"}),
     awful.key({ modkey, "Shift"   }, "p", function () awful.spawn("flatpak run com.bitwarden.desktop") end,
               {description = "bitwarden", group = "applications"}),
-    awful.key({ modkey, "Shift"   }, "p", function () awful.spawn("flatpak run com.bitwarden.desktop") end,
-              {description = "open bitwarden", group = "applications"}),
+    awful.key({ modkey,           }, "p", function () awful.spawn("rofi-pass") end,
+      {description = "passmenu", group = "applications"}),
     awful.key({ modkey,           }, "x", function () awful.spawn("/home/justinr/bin/screenshot.sh") end,
               {description = "take screenshot", group = "actions"}),
 
@@ -368,8 +372,8 @@ globalkeys = gears.table.join(
         end,
         {description = "focus previous by index", group = "client"}
     ),
-    awful.key({ modkey,           }, "b", function () mymainmenu:show() end,
-              {description = "show main menu", group = "awesome"}),
+    -- awful.key({ modkey,           }, "b", function () mymainmenu:show() end,
+              -- {description = "show main menu", group = "awesome"}),
 
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,
@@ -429,8 +433,10 @@ globalkeys = gears.table.join(
               {description = "restore minimized", group = "client"}),
 
     -- Prompt
-    awful.key({ modkey },            "d",     function () awful.util.spawn("dmenu_run") end,
-              {description = "dmenu prompt", group = "launcher"}),
+    -- awful.key({ modkey },            "d",     function () awful.util.spawn("dmenu_run") end,
+    --           {description = "dmenu prompt", group = "launcher"}),
+    awful.key({ modkey },            "d",     function () awful.util.spawn("rofi -show run") end,
+              {description = "rofi prompt", group = "launcher"}),
 
     awful.key({ modkey, "Shift" }, "b",
               function ()
@@ -443,7 +449,7 @@ globalkeys = gears.table.join(
               end,
               {description = "lua execute prompt", group = "awesome"}),
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,
+    awful.key({ modkey }, "b", function() menubar.show() end,
               {description = "show the menubar", group = "launcher"})
 )
 
@@ -600,6 +606,7 @@ awful.rules.rules = {
         name = {
           "Event Tester",  -- xev.
           "Pulsemixer",
+          "iSync",
           "^origin$",
           "^Origin$"},
 
@@ -618,20 +625,30 @@ awful.rules.rules = {
     -- Set Firefox to always map on the tag named "2" on screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { screen = 1, tag = "2" } },
-    { rule = { name = "Neomutt" },
+    { rule = { name = "demacs" },
+      properties = { screen = 1, tag = "1" } },
+    { rule = { name = "org-mail" },
       properties = { screen = 1, tag = "3" } },
-    { rule = { name = "Journal" },
+    { rule = { name = "org-index" },
       properties = { screen = 1, tag = "4" } },
-    { rule = { name = "Newsboat" },
-      properties = { screen = 1, tag = "5" } },
-    { rule = { name = "Podboat" },
-      properties = { screen = 1, tag = "5" } },
-    { rule = { class = "discord" },
-      properties = { screen = 1, tag = "6" } },
-    { rule = { class = "Steam" },
-      properties = { screen = 1, tag = "7" } },
     { rule = { class = "Gnucash" },
+      properties = { screen = 1, tag = "6" } },
+    { rule = { name = "Newsboat" },
+      properties = { screen = 1, tag = "7" } },
+    { rule = { name = "Podboat" },
+      properties = { screen = 1, tag = "7" } },
+    { rule = { name = "elfeed" },
+      properties = { screen = 1, tag = "7" } },
+    { rule = { class = "discord" },
       properties = { screen = 1, tag = "8" } },
+    { rule = { class = "Steam" },
+      properties = { screen = 1, tag = "9" } },
+    { rule = { class = "steam" },
+      properties = { screen = 1, tag = "9" } },
+    { rule = { class = "Lutris" },
+      properties = { screen = 1, tag = "9" } },
+    { rule = { class = "lutris" },
+      properties = { screen = 1, tag = "9" } },
 }
 -- }}}
 
@@ -698,3 +715,8 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+awful.util.spawn("demacs")
+awful.util.spawn("alacritty -t Newsboat -e newsboat")
+awful.util.spawn("discord")
+awful.util.spawn("lutris")

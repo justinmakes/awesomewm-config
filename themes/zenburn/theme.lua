@@ -16,10 +16,12 @@ theme.font      = "sans 12"
 
 -- {{{ Colors
 theme.fg_normal  = "#DCDCCC"
-theme.fg_focus   = "#F0DFAF"
+-- theme.fg_focus   = "#F0DFAF"
+theme.fg_focus   = "#000000"
 theme.fg_urgent  = "#CC9393"
 theme.bg_normal  = "#3F3F3F"
-theme.bg_focus   = "#1E2320"
+-- theme.bg_focus   = "#1E2320"
+theme.bg_focus   = "#1AFC3F"
 theme.bg_urgent  = "#3F3F3F"
 theme.bg_systray = theme.bg_normal
 -- }}}
@@ -28,7 +30,8 @@ theme.bg_systray = theme.bg_normal
 theme.useless_gap   = dpi(0)
 theme.border_width  = dpi(2)
 theme.border_normal = "#3F3F3F"
-theme.border_focus  = "#6F6F6F"
+-- theme.border_focus  = "#6F6F6F"
+theme.border_focus  = "#1AFC3F"
 theme.border_marked = "#CC9393"
 -- }}}
 
