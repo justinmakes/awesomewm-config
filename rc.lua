@@ -3,7 +3,7 @@
 pcall(require, "luarocks.loader")
 
 -- Custom Modules
-local lain = require("lain")
+local lain = require("lain") -- https://github.com/lcpz/lain.git
 
 -- Standard awesome library
 local gears = require("gears")
