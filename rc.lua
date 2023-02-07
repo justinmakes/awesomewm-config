@@ -2,6 +2,9 @@
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
 
+-- Custom Modules
+local lain = require("lain")
+
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
@@ -51,7 +54,7 @@ beautiful.init(theme_path)
 
 -- This is used later as the default terminal and editor to run.
 terminal = "alacritty"
-editor = os.getenv("EDITOR") or "nvim"
+editor = os.getenv("EDITOR") or "spacevim"
 editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
@@ -63,8 +66,10 @@ modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
+    lain.layout.centerwork,
+    -- lain.layout.centerwork.horizontal,
     awful.layout.suit.tile,
-    awful.layout.suit.magnifier,
+    -- awful.layout.suit.magnifier,
     awful.layout.suit.floating,
     -- awful.layout.suit.tile.left,
     -- awful.layout.suit.tile.bottom,
