@@ -176,7 +176,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- https://awesomewm.org/apidoc/documentation/08-client-layout-system.md.html
     awful.tag.add("1", {
       -- screen = screen.primary,
-      icon               = "/home/justinr/.config/awesome/icons/terminal.png",
+      icon               = "/home/justinr/.config/awesome/icons/emacs.png",
       layout             = awful.layout.layouts[1],
       -- master_fill_policy = "master_width_factor",
       -- gap_single_client  = true,
@@ -186,12 +186,12 @@ awful.screen.connect_for_each_screen(function(s)
     })
     awful.tag.add("2", {
       -- screen = screen.primary,
-      icon               = "/home/justinr/.config/awesome/icons/globe.png",
+      icon               = "/home/justinr/.config/awesome/icons/terminal.png",
       layout             = awful.layout.layouts[1],
     })
     awful.tag.add("3", {
       -- screen = screen.primary,
-      icon               = "/home/justinr/.config/awesome/icons/email.png",
+      icon               = "/home/justinr/.config/awesome/icons/terminal.png",
       layout             = awful.layout.layouts[1],
     })
     awful.tag.add("4", {
@@ -201,12 +201,13 @@ awful.screen.connect_for_each_screen(function(s)
     })
     awful.tag.add("5", {
       -- screen = screen.primary,
-      -- icon               = "/home/justinr/.config/awesome/icons/rss.png",
+      icon               = "/home/justinr/.config/awesome/icons/email.png",
       layout             = awful.layout.layouts[1],
     })
     awful.tag.add("6", {
       -- screen = screen.primary,
-      icon   = "/home/justinr/.config/awesome/icons/budget.png",
+      -- icon   = "/home/justinr/.config/awesome/icons/budget.png",
+      icon               = "/home/justinr/.config/awesome/icons/globe.png",
       layout             = awful.layout.layouts[1],
     })
     awful.tag.add("7", {
@@ -627,10 +628,10 @@ awful.rules.rules = {
     --   properties = { screen = 1, tag = "2" } },
     { rule = { name = "demacs" },
       properties = { screen = 1, tag = "1" } },
-    { rule = { name = "org-mail" },
-      properties = { screen = 1, tag = "3" } },
     { rule = { name = "org-index" },
       properties = { screen = 1, tag = "4" } },
+    { rule = { name = "org-mail" },
+      properties = { screen = 1, tag = "5" } },
     { rule = { class = "Gnucash" },
       properties = { screen = 1, tag = "6" } },
     { rule = { name = "Newsboat" },
@@ -715,8 +716,3 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
-
-awful.util.spawn("demacs")
-awful.util.spawn("alacritty -t Newsboat -e newsboat")
-awful.util.spawn("discord")
-awful.util.spawn("lutris")
