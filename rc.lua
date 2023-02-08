@@ -68,6 +68,10 @@ modkey = "Mod4"
 awful.layout.layouts = {
     lain.layout.centerwork,
     -- lain.layout.centerwork.horizontal,
+    -- lain.layout.termfair,
+    -- lain.layout.termfair.center,
+    lain.layout.cascade,
+    -- lain.layout.cascade.tile,
     awful.layout.suit.tile,
     -- awful.layout.suit.magnifier,
     awful.layout.suit.floating,
@@ -629,10 +633,8 @@ awful.rules.rules = {
     },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { screen = 1, tag = "2" } },
-    { rule = { name = "demacs" },
-      properties = { screen = 1, tag = "1" } },
+    -- { rule = { name = "demacs" },
+      -- properties = { screen = 1, tag = "1" } },
     { rule = { name = "org-index" },
       properties = { screen = 1, tag = "4" } },
     { rule = { name = "org-mail" },
@@ -640,6 +642,8 @@ awful.rules.rules = {
     { rule = { class = "Gnucash" },
       properties = { screen = 1, tag = "6" } },
     { rule = { name = "Newsboat" },
+    -- { rule = { class = "Firefox" },
+    --   properties = { screen = 1, tag = "6" } },
       properties = { screen = 1, tag = "7" } },
     { rule = { name = "Podboat" },
       properties = { screen = 1, tag = "7" } },
