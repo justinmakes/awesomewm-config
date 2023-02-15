@@ -2,7 +2,7 @@
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
 
--- Custom Modules
+-- Custom modules
 local lain = require("lain") -- https://github.com/lcpz/lain.git
 
 -- Standard awesome library
@@ -633,8 +633,6 @@ awful.rules.rules = {
     },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
-    -- { rule = { name = "demacs" },
-      -- properties = { screen = 1, tag = "1" } },
     { rule = { name = "org-index" },
       properties = { screen = 1, tag = "4" } },
     { rule = { name = "org-mail" },
@@ -648,6 +646,8 @@ awful.rules.rules = {
     { rule = { name = "Podboat" },
       properties = { screen = 1, tag = "7" } },
     { rule = { name = "elfeed" },
+      properties = { screen = 1, tag = "7" } },
+    { rule = { name = "ncspot" },
       properties = { screen = 1, tag = "7" } },
     { rule = { class = "discord" },
       properties = { screen = 1, tag = "8" } },
