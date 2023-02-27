@@ -233,7 +233,7 @@ awful.screen.connect_for_each_screen(function(s)
     })
     awful.tag.add("9", {
       -- screen = screen.primary,
-      icon   = "/home/justinr/.config/awesome/icons/steam.png",
+      icon   = "/home/justinr/.config/awesome/icons/lutris.png",
       -- layout             = awful.layout.layouts[1],
       layout = awful.layout.suit.floating,
     })
